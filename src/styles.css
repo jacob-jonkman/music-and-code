@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+/* Add application styles & imports to this file! */
+@import url('https://fonts.googleapis.com/css?family=Spectral+SC:700');
+@import '~highlight.js/styles/github.css';
+
+body {
+  background-color: #f9f9f9;
+  margin: 0;
+  font-family: "Verdana", Verdana, sans-serif;
+}
+
+h1 {
+  color: dodgerblue;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  background-color: #ededed;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+h4 {
+  margin-top: 0.5em;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+  background-color: dodgerblue;
+}
+
+li {
+  flex: 1;
+  background-color: dodgerblue;
+  margin: 0 1em;
+  overflow: hidden;
+}
+
+a {
+  box-sizing: border-box;
+  text-decoration: none;
+  padding: .3em;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-weight: bold;
+  transition: background-color ease-in-out 200ms;
+}
+
+.active {
+  background-color: rgba(0,0,0, 0.25);
+}
+
+.centered {
+  text-align: center;
+}

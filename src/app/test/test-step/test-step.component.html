@@ -1,0 +1,13 @@
+<h1>Assignment {{assignmentNumber+1}} of {{numAssignments}}</h1>
+<pre><code class="bg-white" [highlight]="code"></code></pre>
+<form class="centered" [formGroup]="assignmentForm" (keypress)="onKeyPress($event)">
+  <div class="form-group">
+    <label class="mr-2" for="answer">What will be printed to the terminal?</label>
+    <input class="form-control" formControlName="answer" type="text" id="answer" autocomplete="off" >
+    <p *ngIf="hasError()" class="mt-2 alert alert-danger">Please specify what you think the output of the program is.</p>
+  </div>
+</form>
+<div class="button-row centered">
+  <button class="btn btn-danger" *ngIf="assignmentNumber < numAssignments" (click)="next()">Next</button>
+  <button class="btn btn-danger" *ngIf="assignmentNumber === numAssignments" (click)="next()">Finish</button>
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 " *ngIf="!started">
+      <h1>Welcome!</h1>
+      <p>Thank you for participating in this experiment! Before starting, carefully read the instructions presented below.</p>
+      <p>
+        In this experiment, you will be asked to look at short C++ code snippets. There is a total of {{numCodes}} snippets.
+        Your task will be to carefully study the programs and fill in what you think will be printed to the terminal.
+      </p>
+      <p *ngIf="listeningToMusic">You will be listening to music of your choice during the experiment.
+        We therefore ask you to open your favorite streaming app and to construct a playlist that has a runtime of at least 20 minutes.
+        During the experiment, please do not remove your earphones.</p>
+      <p>
+        After all assignments have been completed, you will be asked to fill in a short survey about you and your results.
+        If you have any questions, do not hesitate to ask for help.
+      </p>
+      <p>When everything is clear, please press the button below to start the experiment.</p>
+      <div class="centered">
+        <button class="btn btn-danger" (click)="beginTest()">Start</button>
+      </div>
+    </div>
+
+    <div class="col-12" *ngIf="started && !finished && (assignments$ | async) as assignments">
+      <app-test-step [assignment]="assignments[assignmentNumber]" [assignmentNumber]="assignmentNumber" [code]="code"
+                     [numAssignments]="numCodes" (nextStep)="changeAssignment($event)"></app-test-step>
+    </div>
+
+    <div class="col-12" *ngIf="finished && (participantId$ | async) as participantId">
+      <h1>Thank you for participating!</h1>
+      <div class="centered">
+        <p>Click the button to be redirected to a survey.</p>
+        <a class="btn btn-danger" href="https://leidenuniv.eu.qualtrics.com/jfe/form/SV_9GhvrI1x8xmeJMN?ParticipantId={{participantId}}&music={{listeningToMusic}}">Click</a>
+      </div>
+    </div>
+  </div>
+</div>
