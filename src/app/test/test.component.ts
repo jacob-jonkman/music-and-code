@@ -35,7 +35,7 @@ export class TestComponent {
     
     this.listeningToMusic$ = this.afs.collection(`params`).valueChanges().pipe(
       first(),
-      map(params => params[0]['ßmusic']),
+      map(params => params[0]['music']),
       shareReplay(1)
     );
   }

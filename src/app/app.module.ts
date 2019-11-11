@@ -6,10 +6,13 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { TestModule } from './test/test.module';
+import { AnalysisComponent } from './analysis/analysis.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AnalysisComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -17,6 +20,7 @@ import { TestModule } from './test/test.module';
     BrowserModule,
     RouterModule,
     TestModule,
+    AppRoutingModule,
   ],
   providers: [],
   exports: [
