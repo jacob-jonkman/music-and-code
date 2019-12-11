@@ -16,4 +16,9 @@
             {{meanTimeNoMusic$ | async}}
         </div>
     </div>
+  <div class="row" *ngIf="(combinedStats$ | async) as stats">
+    <button class="btn btn-primary" (click)="downloadFile(stats)">
+      Download
+    </button>
+  </div>
 </div>

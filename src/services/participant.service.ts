@@ -78,7 +78,24 @@ export class ParticipantService {
     );
   }
 
-  getAllAnswers(condition: 'music' | 'noMusic'): Observable<Answer[][]> {
+  getAllAnswers(): Observable<{id?: string, answers?: Answer[]}[]> {
+    return this.participants$.pipe(
+      first(participants => !!participants),
+      switchMap((participants: Participant[]) => {
+        const observables: any = participants.map(participant => {
+          return this.afs.collection<Answer>(`participants/${participant.id}/answers`).valueChanges().pipe(
+            first(a => !!a),
+            map((answers: Answer[]) => {
+              return {id: participant.id, answers};
+            })
+          );
+        });
+        return combineLatest(observables);
+      }),
+    );
+  }
+
+  getAnswers(condition?: 'music' | 'noMusic'): Observable<Answer[][]> {
     return this.splitParticipants().pipe(
       first(),
       switchMap((participants: {music: Participant[], noMusic: Participant[]}) => {
@@ -87,10 +104,7 @@ export class ParticipantService {
         });
         return combineLatest(observables);
       }),
-      zip(answers => {
-        console.log('zipped answers', condition, answers);
-        return answers;
-      })
+      zip(answers => answers)
     );
   }
 }
